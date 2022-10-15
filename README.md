@@ -8,6 +8,18 @@
 
 This report mainly showcases how authentication and authorisation is implemented via JWT using the [NestJS](https://nestjs.com/). The example that would be simulated is a simple user database that allows users to login, view their own data, and view the data of others if the have enough authorisation (more details in).
 
+### Table of Content
+<!-- no toc -->
+* [Table of Content](#table-of-content)
+* [NestJS or Express?](#nestjs-or-express)
+* [Routes Planning](#routes-planning)
+  * [HTTP Error 401 Vs 403](#http-error-401-vs-403)
+* [Requirements](#requirements)
+* [Running the application](#running-the-application)
+* [Testing the application](#testing-the-application)
+  * [Jest Screenshot](#jest-screenshot)
+* [Extending this task](#extending-this-task)
+
 ### NestJS or Express?
 
 NestJS was chosen over Express as:
@@ -64,3 +76,26 @@ yarn start:dev # Hot reloads on change
 ```
 
 The application is set to run on <http://localhost:3000>.
+
+### Testing the application
+
+```bash
+yarn test
+```
+
+#### Jest Screenshot
+
+![jest-image](https://i.ibb.co/5WPvv6r/image.png)
+
+Refer to `./test/app.e2e-spec.ts` for the test details, or manually test with Postman with the collection [here](https://www.getpostman.com/collections/78c6d254164a5814562b)
+
+### Extending this task
+
+1. Refresh token
+   * Currently the tokens are set to expire in 300 seconds regardless.
+   * Popular websites implement refresh tokens, typically through `/refresh`, to allow users to stay logged in to a website for an extended amount of time
+     * "Remember me for 30 days"
+2. Explore other Passport [strategies](https://www.passportjs.org/packages/)
+   * [Auth0 authentication](https://www.passportjs.org/packages/passport-auth0/)
+   * [Simplify HTTP bearer](https://www.passportjs.org/packages/passport-http-bearer/)
+   * [Github authentication](https://www.passportjs.org/packages/passport-github2/)
