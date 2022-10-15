@@ -38,7 +38,7 @@ To summarise, this report showcases how authentication and authorisation is impl
 ### Why NestJS instead of Express?
 
 1. NestJS is built on top of Express, and I wanted to explore what it offers.
-2. Its integration with [JWT](https://docs.nestjs.com/security/authentication#jwt-functionality) and [Role-based authentication](https://docs.nestjs.com/guards#role-based-authentication) is well-documented.
+2. Its integration with [JWT](https://docs.nestjs.com/security/authentication#jwt-functionality) and [role-based authentication](https://docs.nestjs.com/guards#role-based-authentication) is well-documented.
 3. NestJS also nicely integrates with the popular Express-compatible authentication middleware, [Passport](https://github.com/jaredhanson/passport).
 4. The structure enforced by NestJS' boilerplate-generation (`nest new <project_name>`) makes it easy to extend the application for all sorts of strategies.
 
