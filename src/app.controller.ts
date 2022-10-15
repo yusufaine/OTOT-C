@@ -20,17 +20,19 @@ export class AppController {
     private usersService: UsersService
   ) {}
 
+  @Get()
+  welcomeMessage() {
+    return "Greetings EVERYONE!";
+  }
+
+  // Local login
   @UseGuards(AuthGuard("local"))
   @Post("auth/login")
   async login(@Request() req) {
     return this.authService.login(req.user);
   }
 
-  @Get()
-  welcomeMessage() {
-    return "Greetings EVERYONE! Please login to view your own details";
-  }
-
+  // Given JWT
   @HasRoles(Role.ADMIN, Role.USER)
   @UseGuards(AuthGuard("jwt"), RolesGuard)
   @Get(["me", "profile"])

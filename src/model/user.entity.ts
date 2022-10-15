@@ -1,5 +1,4 @@
 import { Role } from "./role.enum";
-import { hash } from "argon2";
 
 export type User = {
   name: string;
@@ -10,36 +9,29 @@ export type User = {
 
 export type ViewableUser = Omit<User, "hashedPassword">;
 
-const defaultUsers: (Omit<User, "hashedPassword"> & { password: string })[] = [
+export const defaultUsers: User[] = [
   {
     name: "Alice",
     username: "adminAlice",
-    password: "alice_password",
     roles: [Role.ADMIN, Role.USER],
+    // "alice_password"
+    hashedPassword:
+      "$argon2id$v=19$m=65536,t=3,p=4$TlvG0sq5sVpvGDzXLvTf1w$kiRG0xnemY0k9KLZcOsGgj6h+Je+NZBMPkkhfOsmE4o",
   },
   {
     name: "Bob",
     username: "userBob",
-    password: "bob_password",
     roles: [Role.USER],
+    // "bob_password"
+    hashedPassword:
+      "$argon2id$v=19$m=65536,t=3,p=4$zycI/6WlJGB1aC2FGQR6Gw$unAiq1Ebye6f9NJ/VHso3XPjJ+E7ugodkFMdBj7/DNI",
   },
   {
     name: "John Doe",
     username: "unknown",
-    password: "unknown",
     roles: [Role.USER],
+    // "unknown"
+    hashedPassword:
+      "$argon2id$v=19$m=65536,t=3,p=4$4IhFo+bNF2SFvgpolBgoxw$5NpEDbxfKVJ9wPfCLb7ONN2gkR/q6+adeZRXapAbyo4",
   },
 ];
-
-export async function getHashedDefaultUsers(): Promise<User[]> {
-  const hashedUsers: User[] = [];
-  for (const user of defaultUsers) {
-    const { password, ...data } = user;
-    const hashedPassword = await hash(password);
-    hashedUsers.push({
-      ...data,
-      hashedPassword,
-    });
-  }
-  return hashedUsers;
-}

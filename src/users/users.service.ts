@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 
-import { getHashedDefaultUsers, User, ViewableUser } from "../model";
+import { defaultUsers, User, ViewableUser } from "../model";
 
 @Injectable()
 export class UsersService {
@@ -8,11 +8,11 @@ export class UsersService {
   private users: Record<string, User> = {};
 
   constructor() {
-    getHashedDefaultUsers().then((user) => {
-      for (const hashUser of user) {
-        this.users[hashUser.username] = hashUser;
-      }
-    });
+    defaultUsers.forEach((user) => (this.users[user.username] = user));
+  }
+
+  getAll() {
+    return Object.values(this.users);
   }
 
   findOne(username: string): User | undefined {
@@ -23,7 +23,7 @@ export class UsersService {
     const user = this.users[username];
 
     if (!user) {
-      return undefined;
+      throw new NotFoundException(`${username} not found`);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
