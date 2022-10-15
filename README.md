@@ -36,8 +36,8 @@ NestJS was chosen over Express as:
 | `/`                  | 200       |                             | Public     | "Greetings EVERYONE!"        |
 | `/auth/login`        | 201       | Valid user credentials      | Admin/User | Access token object          |
 | `/auth/login`        | 401       | Invalid user credentials    | Admin/User | "Invalid credentials"        |
-| `/me` / `/profile`   | 200       | Valid token                 | Admin/User | Own user info, token details |
-| `/me` / `/profile`   | 401       | Invalid token               | Public     | "Unauthorized"               |
+| `/me`                | 200       | Valid token                 | Admin/User | Own user info, token details |
+| `/me`                | 401       | Invalid token               | Public     | "Unauthorized"               |
 | `/profile/:username` | 200       | Valid token, role, username | Admin      | User info of username        |
 | `/profile/:username` | 404       | Valid token, role,          | Admin      | "`username` not found"       |
 | `/profile/:username` | 403       | Valid token, username       | User/      | "Forbidden resource"         |
