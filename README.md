@@ -44,17 +44,17 @@ To summarise, this report showcases how authentication and authorisation is impl
 
 ### Routes Planning
 
-| Route                | HTTP Code & Method | Inputs                      | Role       | Response                     |
-| -------------------- | ------------------ | --------------------------- | ---------- | ---------------------------- |
-| `/`                  | 200                |                             | Public     | "Greetings EVERYONE!"        |
-| `/auth/login`        | 201                | Valid user credentials      | Public     | Access token object          |
-| `/auth/login`        | 401                | Invalid user credentials    | Public     | "Invalid credentials"        |
-| `/me`                | 200                | Valid token                 | Admin/User | Own user info, token details |
-| `/me`                | 401                | No token or invalid token   | Public     | "Unauthorized"               |
-| `/profile/:username` | 200                | Valid token, role, username | Admin      | User info of username        |
-| `/profile/:username` | 404                | Valid token, role,          | Admin      | "`username` not found"       |
-| `/profile/:username` | 403                | Valid token, username       | User       | "Forbidden resource"         |
-| `/profile/:username` | 401                | No token or invalid token   | Public     | "Unauthorized"               |
+| Route                | HTTP Code | Inputs                      | Role       | Response                     |
+| -------------------- | --------- | --------------------------- | ---------- | ---------------------------- |
+| `/`                  | 200       |                             | Public     | "Greetings EVERYONE!"        |
+| `/auth/login`        | 201       | Valid user credentials      | Public     | Access token object          |
+| `/auth/login`        | 401       | Invalid user credentials    | Public     | "Invalid credentials"        |
+| `/me`                | 200       | Valid token                 | Admin/User | Own user info, token details |
+| `/me`                | 401       | No token or invalid token   | Public     | "Unauthorized"               |
+| `/profile/:username` | 200       | Valid token, role, username | Admin      | User info of username        |
+| `/profile/:username` | 404       | Valid token, role,          | Admin      | "`username` not found"       |
+| `/profile/:username` | 403       | Valid token, username       | User       | "Forbidden resource"         |
+| `/profile/:username` | 401       | No token or invalid token   | Public     | "Unauthorized"               |
 
 #### HTTP Error 401 Vs 403
 
