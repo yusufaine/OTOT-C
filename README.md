@@ -6,6 +6,7 @@
 
 ## Task C: Authentication and Authorisation Task <!-- omit in toc -->
 
+### Table of Content <!-- omit in toc -->
 - [Motivation](#motivation)
 - [Why NestJS instead of Express?](#why-nestjs-instead-of-express)
 - [Routes Planning](#routes-planning)
