@@ -172,7 +172,7 @@ describe("Route test", () => {
       });
 
       describe("Given invalid token", () => {
-        test("Check valid username, expect 403", () => {
+        test("Check valid username, expect 401", () => {
           return request(app.getHttpServer())
             .get(ENDPOINT(validUsername))
             .set("Authorization", `Bearer ${invalidToken}`)
