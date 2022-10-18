@@ -140,6 +140,8 @@ yarn test
 | `me`                    | Returns the profile associated to the user if token is valid                                                                     |
 | `profile/:username`     | Returns profile assocated to the given `username`, if token has `admin` role                                                     |
 
+> **Note**: For demonstration purposes, `auth/login -- invalid` sets the `token` to "THIS_IS_INVALID".
+
 #### Credentials
 
 Here are the following credentials for the mock database:
