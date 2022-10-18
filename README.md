@@ -18,6 +18,9 @@
   - [Authentication](#authentication)
   - [Authorisation](#authorisation)
 - [Testing the application](#testing-the-application)
+  - [Running Jest](#running-jest)
+  - [Testing with Postman](#testing-with-postman)
+  - [Credentials](#credentials)
   - [Jest Screenshot](#jest-screenshot)
 - [Extending this task](#extending-this-task)
 
@@ -70,11 +73,10 @@ On the other hand, **Error 403** indicates that the request is valid, meaning th
 
 1. NodeJS
 2. NestJS
-3. Jest (recommended)
-4. Postman (optional)
-   * You may refer to the collection [here](https://www.getpostman.com/collections/78c6d254164a5814562b). However, as cookies are **not** used, testing this Postman would mean that you would need to manually copy over the `access-token` into the header with the following values:
-     * `key`: `Authorization`
-     * `value`: `Bearer <access-token-value>`
+3. Jest (recommended, quick way to show that it's working)
+4. Postman (easier to inspect requests)
+   * You may refer to the collection [here](https://www.getpostman.com/collections/78c6d254164a5814562b).
+   * Collection utilises `Test` to set the `Authorization` headers of a request through environmenet variables.
 
 > A `Record<string,User>` is used in place of a database as this is a proof-of-concept and it makes it easier to test via `Jest`.
 
@@ -119,9 +121,34 @@ Related files:
 
 ### Testing the application
 
+Expected values of the tests are based on [Routes Planning](#routes-planning).
+
+#### Running Jest
+
 ```bash
 yarn test
 ```
+
+#### Testing with Postman
+
+| Request name            | Description                                                                                                                      |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                     | Test that anyone can access this endpoint                                                                                        |
+| `auth/login -- user`    | Logs in as `userBob`, returns access token which is set the collection variable `token` to test `me` and `profile/:username`     |
+| `auth/login -- admin`   | Logs in as `adminAlice`, returns access token which is sets the collection variable `token` to test `me` and `profile/:username` |
+| `auth/login -- invalid` | Logs in as `adminAlice`, **but** sets `token` with an invalid token                                                              |
+| `me`                    | Returns the profile associated to the user if token is valid                                                                     |
+| `profile/:username`     | Returns profile assocated to the given `username`, if token has `admin` role                                                     |
+
+#### Credentials
+
+Here are the following credentials for the mock database:
+
+| Username   | Password       | Role        |
+| ---------- | -------------- | ----------- |
+| adminAlice | alice_password | Admin, User |
+| userBob    | bob_password   | User        |
+| unknown    | unknown        | User        |
 
 #### Jest Screenshot
 
