@@ -150,13 +150,13 @@ Here are the following credentials for the mock database:
 | userBob    | bob_password   | User        |
 | unknown    | unknown        | User        |
 
+<div style="page-break-after: always"></div>
+
 #### Jest Screenshot
 
 ![jest-image](https://i.ibb.co/DzW9kKT/image.png)
 
 Refer to [`./test/app.e2e-spec.ts`](https://github.com/yusufaine/OTOT-C/blob/main/test/app.e2e-spec.ts) for the test details, or manually test with Postman with the collection [here](https://www.getpostman.com/collections/78c6d254164a5814562b).
-
-<div style="page-break-after: always"></div>
 
 ### Extending this task
 
